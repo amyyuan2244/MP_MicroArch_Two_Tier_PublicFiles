@@ -6,7 +6,6 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: free-tier-job
   namespace: free-service
 spec:
   template:

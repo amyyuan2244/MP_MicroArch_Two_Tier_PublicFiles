@@ -10,15 +10,17 @@
 FROM python:3.6
 
 # TODO: Set the working directory
-WORKDIR /premium_service/
+WORKDIR /app/
 
 # TODO: Copy the necessary application files into the image (from premium_service/app/ directory)
-
+COPY mp12_microarch_twotier_starter/premium_service/app/ /app/
 
 # TODO: Install Python dependencies
+RUN pip3 install --upgrade pip
+RUN pip3 install -r /app/requirements_flaskapp.txt
 
 # TODO: Expose the required port
 EXPOSE 5000
 
 # Specify the default command to run the Flask app
-CMD ["python3", "flask_app.py"]
+CMD ["python3", "/app/flask_app.py"]

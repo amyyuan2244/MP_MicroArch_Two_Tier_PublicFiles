@@ -28,10 +28,29 @@ app = Flask(__name__)
 #   - Generates a unique job name
 #   - Submits the job to the Kubernetes cluster
 #   - Returns a success or error response
-@app.route('<your_path_here>', methods=['POST'])
+@app.route('/premium', methods=['POST'])
 def post_premium():
-    pass
+    namespace = "premium-service"
+    uniqueName = "premium-service-job-" + str(time.time())
+    dataSet = request.get_json()['dataset']    # this is just a string for kmnist or mnist
 
+    with open('/app/premium-tier-job.yaml', 'r') as f:
+        jobSpec = yaml.load(f, Loader=yaml.Loader)
+
+    jobSpec['metadata']['name'] = uniqueName
+    jobSpec['spec']['template']['metadata']['labels']['dataset'] = dataSet # TODO
+    with open('/app/premium-tier-job.yaml', 'w') as file:
+        yaml.dump(jobSpec, file)
+
+    try:
+        response = v1.create_namespaced_job(
+            body=jobSpec,
+            namespace=namespace
+        )
+        return f"Job created: {response.metadata.name}", 200
+    except ApiException as e:
+        return f"Exception when calling BatchV1Api->create_namespaced_job: {e}", 500
+        
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
