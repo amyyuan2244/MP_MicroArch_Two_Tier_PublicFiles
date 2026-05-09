@@ -9,29 +9,46 @@
 # Specify the base image
 FROM python:3.6
 
+# DATASET: Specifies the dataset (mnist or kmnist).
+# TYPE: Specifies the model type (ff for feed-forward or cnn for convolutional neural network).
+# Free-service configuration: ff, mnist 
+
+ENV DATASET="mnist"
+ENV TYPE="ff"
+
 # TODO: Set the working directory
-WORKDIR ...
+WORKDIR /free_service/
+# should this include /app/?
 
 # Copy model and source files into the image (from /mp12_microarch_twotier_starter/model_config/ directory)
-COPY model_config/requirements.txt /app/
-COPY model_config/classify.py /app/
-COPY model_config/data_preload.py /app/
-COPY model_config/train.py /app/
-COPY model_config/utils.py /app/
-COPY model_config/models.py /app/
+COPY mp12_microarch_twotier_starter/model_config/requirements.txt /app/
+COPY mp12_microarch_twotier_starter/model_config/classify.py /app/
+COPY mp12_microarch_twotier_starter/model_config/data_preload.py /app/
+COPY mp12_microarch_twotier_starter/model_config/train.py /app/
+COPY mp12_microarch_twotier_starter/model_config/utils.py /app/
+COPY mp12_microarch_twotier_starter/model_config/models.py /app/
 
 # TODO: Install Python dependencies
+RUN pip3 install --upgrade pip
+# numpy, torch, torchvision
+RUN pip3 install -r /app/requirements.txt 
+RUN pip3 install kaggle
 
 # TODO: Create directories for models and data
+RUN mkdir -p ./models
+RUN mkdir -p ./data/MNIST/raw
 
 # TODO: Preload data and pretrain models
-RUN ...
-RUN ...
-RUN ...
-RUN ...
+RUN cd ./data/MNIST/raw && \
+    kaggle datasets download \
+    -d hojjatk/mnist-dataset \
+    -p . \
+    --unzip && \
+    rm -rf ./*/
+RUN  python3 /app/train.py
 
 # TODO: Expose the required port
-EXPOSE ...
+EXPOSE 5000
 
 # TODO: Specify the default command to run the classification script
-CMD ["python", "classify.py"]
+CMD ["python", "/app/classify.py"]

@@ -7,14 +7,20 @@
 
 
 # TODO: Specify a Python base image
+FROM python:3.6
 
 # TODO: Set the working directory
+WORKDIR /free_service/
 
 # TODO: Copy the necessary application files into the image (from free_service/app/ directory)
 
+
 # TODO: Install Python dependencies
 
+# including yaml?
+
 # TODO: Expose the required port
+EXPOSE 5000
 
 # Specify the default command to run the Flask app
 CMD ["python3", "flask_app.py"]

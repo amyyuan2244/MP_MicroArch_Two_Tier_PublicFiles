@@ -10,6 +10,7 @@ or business logic as required by the assignment.
 
 from kubernetes import client, config
 from flask import Flask, request
+import yaml
 
 # Load Kubernetes configuration 
 try:
@@ -28,9 +29,12 @@ app = Flask(__name__)
 #   - Generates a unique job name
 #   - Submits the job to the Kubernetes cluster
 #   - Returns a success or error response
-@app.route('<your_path_here>', methods=['POST'])
+@app.route('/free', methods=['POST'])
 def post_free():
-    pass
+    dataSet = request.get_json()["dataset"]
+
+
+    # TODO: how do I determine the path? is it just /free?
 
 
 if __name__ == "__main__":

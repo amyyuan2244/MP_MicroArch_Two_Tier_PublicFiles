@@ -3,6 +3,7 @@ import torchvision.datasets as dsets
 import torch
 from torch.autograd import Variable
 from models import FFNN, CNN
+from datasets import load_dataset
 
 
 def get_dataset(dataset_name, model_name):
@@ -18,10 +19,10 @@ def get_dataset(dataset_name, model_name):
             root="./data",
             train=True,
             transform=trans,
-            # download=True
+            download=True
         )
 
-        test_dataset = dsets.MNIST(root="./data", train=False, transform=trans)
+        test_dataset = dsets.MNIST(root="./data/KMNIST/raw", train=False, transform=trans)
     elif dataset_name == "kmnist":
         train_dataset = dsets.KMNIST(
             root="./data",
@@ -29,8 +30,15 @@ def get_dataset(dataset_name, model_name):
             transform=trans,
             # download=True
         )
+        # train_dataset = load_dataset("tanganke/kmnist", split="train")
+        # train_dataset = train_dataset.with_format("torch")
+        # train_dataset = dsets.ImageFolder(root="./data/KMNIST/raw", transform=trans)
+        # TODO: how to distinguish training and testing?
 
-        test_dataset = dsets.KMNIST(root="./data", train=False, transform=trans)
+        test_dataset = dsets.KMNIST(root="./data/KMNIST/raw", train=False, transform=trans)
+        # test_dataset = load_dataset("tanganke/kmnist", split="test")
+        # test_dataset = test_dataset.with_format("torch")
+        # test_dataset = dsets.ImageFolder(root="./data/KMNIST/raw", transform=trans)
 
     return train_dataset, test_dataset
 
