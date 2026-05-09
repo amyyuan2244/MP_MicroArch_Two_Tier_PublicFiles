@@ -17,8 +17,7 @@ ENV DATASET="mnist"
 ENV TYPE="ff"
 
 # TODO: Set the working directory
-WORKDIR /free_service/
-# should this include /app/?
+WORKDIR /app/
 
 # Copy model and source files into the image (from /mp12_microarch_twotier_starter/model_config/ directory)
 COPY mp12_microarch_twotier_starter/model_config/requirements.txt /app/
@@ -31,21 +30,18 @@ COPY mp12_microarch_twotier_starter/model_config/models.py /app/
 # TODO: Install Python dependencies
 RUN pip3 install --upgrade pip
 # numpy, torch, torchvision
-RUN pip3 install -r /app/requirements.txt 
-RUN pip3 install kaggle
+RUN pip3 install -r /app/requirements.txt
 
 # TODO: Create directories for models and data
-RUN mkdir -p ./models
-RUN mkdir -p ./data/MNIST/raw
+RUN mkdir -p /app/models
+RUN mkdir -p /app/data/MNIST/raw
+
+COPY mp12_microarch_twotier_starter/data/MNIST/raw/ /app/data/MNIST/raw/
+COPY mp12_microarch_twotier_starter/data/KMNIST/raw/ /app/data/KMNIST/raw/
 
 # TODO: Preload data and pretrain models
-RUN cd ./data/MNIST/raw && \
-    kaggle datasets download \
-    -d hojjatk/mnist-dataset \
-    -p . \
-    --unzip && \
-    rm -rf ./*/
-RUN  python3 /app/train.py
+RUN python3 /app/data_preload.py
+RUN python3 /app/train.py
 
 # TODO: Expose the required port
 EXPOSE 5000

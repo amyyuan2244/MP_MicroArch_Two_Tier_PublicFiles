@@ -17,8 +17,7 @@ ENV DATASET="kmnist"
 ENV TYPE="cnn"
 
 # TODO: Set the working directory
-WORKDIR /premium_service/
-# should this include /app?
+WORKDIR /app/
 
 # Copy model and source files into the image (from /mp12_microarch_twotier_starter/model_config/ directory)
 COPY mp12_microarch_twotier_starter/model_config/requirements.txt /app/
@@ -32,21 +31,17 @@ COPY mp12_microarch_twotier_starter/model_config/models.py /app/
 RUN pip3 install --upgrade pip
 # numpy, torch, torchvision
 RUN pip3 install -r /app/requirements.txt 
-RUN pip3 install kaggle
-RUN pip3 install datasets
 
 # TODO: Create directories for models and data
 RUN mkdir -p ./models
 RUN mkdir -p /app/data/KMNIST/raw
 
-# TODO: Preload data and pretrain models
-# RUN cd ./data/KMNIST/raw && \
-#     kaggle datasets download -d anokas/kuzushiji -p . --unzip && \
-#     rm -rf ./*/
-RUN kaggle datasets download -d anokas/kuzushiji -p /app/data/KMNIST/raw  --unzip
+COPY mp12_microarch_twotier_starter/data/MNIST/raw/ /app/data/MNIST/raw/
+COPY mp12_microarch_twotier_starter/data/KMNIST/raw/ /app/data/KMNIST/raw/
 
-RUN ls /app/data/KMNIST/raw
-# RUN python3 /app/train.py
+# TODO: Preload data and pretrain models
+RUN python3 /app/data_preload.py
+RUN python3 /app/train.py
 
 # TODO: Expose the required port
 EXPOSE 5000
