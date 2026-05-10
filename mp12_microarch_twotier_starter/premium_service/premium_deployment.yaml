@@ -27,7 +27,7 @@ spec:
         ports:
         - containerPort: 8080
       containers:
-      - name: envoyproxy/envoy
+      - name: envoy-container
         image: envoyproxy/envoy:v1.25-latest
         ports:
         - containerPort: 8080
