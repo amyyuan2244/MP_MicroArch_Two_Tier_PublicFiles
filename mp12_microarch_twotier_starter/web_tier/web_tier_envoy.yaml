@@ -4,3 +4,87 @@
 # Students may use this as a base for adding routing, filters, or other proxy features as needed.
 #
 # TODO: Fill in the Envoy proxy configuration here.
+
+admin:
+  address:
+    socket_address:
+      address: 0.0.0.0
+      port_value: 9901  # Admin interface port
+
+# envoy-routing.yaml - Path-based routing
+static_resources:
+  listeners:
+    - name: http_listener
+      address:
+        socket_address:
+          address: 0.0.0.0
+          port_value: 8080
+      filter_chains:
+        - filters:
+            - name: envoy.filters.network.http_connection_manager
+              typed_config:
+                "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+                stat_prefix: ingress_http
+                codec_type: AUTO
+                route_config:
+                  name: local_route
+                  virtual_hosts:
+                    - name: backend
+                      domains: ["*"]
+                      routes:
+                        # Route /free to free service
+                        - match:
+                            prefix: "/free"
+                            headers:
+                              - name: ":method"
+                                exact_match: "POST"
+                          route:
+                            cluster: free_service
+                            # prefix_rewrite: "/"  # Strip /free prefix TOODO?
+                        # Route /premium to premium service
+                        - match:
+                            prefix: "/premium"
+                            headers:
+                              - name: ":method"
+                                exact_match: "POST"
+                          route:
+                            cluster: premium_service
+                            # prefix_rewrite: "/"
+
+                http_filters:
+                  - name: envoy.filters.http.router
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+
+  clusters:
+    - name: free_service
+      connect_timeout: 5s
+      type: STRICT_DNS
+      lb_policy: ROUND_ROBIN
+      load_assignment:
+        cluster_name: free_service
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      # if services in separate docker containers, use container name as address
+                      # for kubernetes, use <servicename>.<namespace>.svc.cluster.local as address
+                      address: mp13.free-service.svc.cluster.local
+                      port_value: 5000
+
+    - name: premium_service
+      connect_timeout: 5s
+      type: STRICT_DNS
+      lb_policy: ROUND_ROBIN
+      load_assignment:
+        cluster_name: premium_service
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      # if services in separate docker containers, use container name as address
+                      # for kubernetes, use <servicename>.<namespace>.svc.cluster.local as address
+                      address: mp13.premium-service.svc.cluster.local
+                      port_value: 5000

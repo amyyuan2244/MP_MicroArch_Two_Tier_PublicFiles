@@ -5,9 +5,16 @@
 #
 
 # TODO: Specify the Envoy base image
+FROM envoyproxy/envoy:v1.38.0
+# https://www.envoyproxy.io/docs/envoy/v1.38.0/start/docker TODO: which version?
+
+WORKDIR /app/
 
 # TODO: Copy the Envoy configuration file into the image
+COPY /mp12_microarch_twotier_starter/web_tier/web_tier_envoy.yaml /app/
 
 # TODO: Expose the required ports
+EXPOSE 8080
 
 # TODO: Specify the default command to run Envoy
+CMD ["envoy", "-c", "/app/web_tier_envoy.yaml"]
