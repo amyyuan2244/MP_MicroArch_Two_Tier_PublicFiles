@@ -71,7 +71,7 @@ static_resources:
                       # if services in separate docker containers, use container name as address
                       # for kubernetes, use <servicename>.<namespace>.svc.cluster.local as address
                       address: free-tier-service.free-service.svc.cluster.local
-                      port_value: 5000
+                      port_value: 8080 # or 5000?
 
     - name: premium_service
       connect_timeout: 5s
@@ -87,4 +87,4 @@ static_resources:
                       # if services in separate docker containers, use container name as address
                       # for kubernetes, use <servicename>.<namespace>.svc.cluster.local as address
                       address: premium-tier-service.premium-service.svc.cluster.local
-                      port_value: 5000
+                      port_value: 8080 # or 5000?

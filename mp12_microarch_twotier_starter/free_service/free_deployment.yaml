@@ -10,8 +10,6 @@ kind: Deployment
 metadata:
   name: free-tier-deployment
   namespace: free-service
-  labels:
-    app: free-app
 spec:
   replicas: 1
   selector:
