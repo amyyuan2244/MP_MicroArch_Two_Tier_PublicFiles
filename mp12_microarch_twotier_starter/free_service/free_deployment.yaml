@@ -4,3 +4,25 @@
 # in the 'free-service' namespace. 
 #
 # TODO: Fill in the Kubernetes Deployment spec here.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: free-tier-deployment
+  labels:
+    app: free-app
+spec:
+  # replicas: 2
+  selector:
+    matchLabels:
+      app: free-app
+  template:
+    metadata:
+      labels:
+        app: free-app
+    spec:
+      containers:
+      - name: amyyuan2244/free-tier-app-docker
+        image: amyyuan2244/free-tier-app-docker:v1
+        ports:
+        - containerPort: 5000

@@ -9,5 +9,5 @@ metadata:
   namespace: free-service
 spec:
   hard:
-    requests.cpu: "2"        # Total CPU requested across all pods
+    limits.cpu: "2"        # Total CPU requested across all pods
     pods: "2"               # Max number of pods in the namespace
