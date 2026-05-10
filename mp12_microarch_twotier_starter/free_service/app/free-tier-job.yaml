@@ -12,6 +12,6 @@ spec:
    spec:
       containers:
       - name: classifier # names don't need to match
-        image: amyyuan2244/free-tier-app:v1  # TODO is this the docker image name here?
+        image: amyyuan2244/free-tier-app:latest  # TODO is this the docker image name here?
       restartPolicy: Never
   backoffLimit: 4

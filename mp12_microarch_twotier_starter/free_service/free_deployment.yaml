@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: free-tier-app-docker
-        image: amyyuan2244/free-tier-app-docker:v1
+        image: amyyuan2244/free-tier-app-docker:latest
         ports:
         - containerPort: 8080
       containers:

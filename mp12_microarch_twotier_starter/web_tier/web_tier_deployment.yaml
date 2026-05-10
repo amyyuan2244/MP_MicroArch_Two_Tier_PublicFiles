@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: web-tier-docker
-        image: amyyuan2244/web-tier-docker:v1
+        image: amyyuan2244/web-tier-docker:latest
         ports:
         - containerPort: 8080
 ---

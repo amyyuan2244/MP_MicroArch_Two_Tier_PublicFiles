@@ -52,13 +52,6 @@ def post_free():
         return f"Job created: {response.metadata.name}", 200
     except ApiException as e:
         return f"Exception when calling BatchV1Api->create_namespaced_job: {e}", 500
-        
-'''
-use kubernetes api to check if successfully launched
-and then log into the instance to check if everything is working
-
-docker run -it \ -v ~/.kube/config:/root/.kube/config \ free-tier-app:v1
-'''
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

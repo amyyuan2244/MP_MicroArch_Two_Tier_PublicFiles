@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: premium-tier-app-docker
-        image: amyyuan2244/premium-tier-app-docker:v1
+        image: amyyuan2244/premium-tier-app-docker:latest
         ports:
         - containerPort: 8080
       containers:
