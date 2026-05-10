@@ -5,3 +5,15 @@
 #
 # TODO: Fill in the Kubernetes Deployment and Service spec here.
 
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-tier-deployment-service
+  namespace: web-tier
+spec:
+  selector:
+    app.kubernetes.io/name: mp13
+  ports:
+    - port: 8080
+      targetPort: 5000
+  type: LoadBalancer
