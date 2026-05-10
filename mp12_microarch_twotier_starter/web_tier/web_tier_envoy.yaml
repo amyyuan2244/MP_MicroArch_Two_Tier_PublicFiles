@@ -35,18 +35,18 @@ static_resources:
                         # Route /free to free service
                         - match:
                             prefix: "/free"
-                            headers:
-                              - name: ":method"
-                                exact_match: "POST"
+                            # headers:
+                            #   - name: ":method"
+                            #     exact_match: "POST"
                           route:
                             cluster: free_service
                             # prefix_rewrite: "/"  # Strip /free prefix TODO?
                         # Route /premium to premium service
                         - match:
                             prefix: "/premium"
-                            headers:
-                              - name: ":method"
-                                exact_match: "POST"
+                            # headers:
+                            #   - name: ":method"
+                            #     exact_match: "POST"
                           route:
                             cluster: premium_service
                             # prefix_rewrite: "/"

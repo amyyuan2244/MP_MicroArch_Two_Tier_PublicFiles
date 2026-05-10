@@ -10,13 +10,15 @@ kind: Deployment
 metadata:
   name: web-tier-deployment
   namespace: web-tier
+  labels:
+    app: web-tier-app
 spec:
-  type: LoadBalancer
   selector:
-    app.kubernetes.io/name: mp13
-  ports:
-    - port: 8080
-      # targetPort: 5000
+    matchLabels:
+      app: web-tier-app
+  # ports:
+  #   - port: 8080
+  #     # targetPort: 5000
   template:
     metadata:
       labels:
@@ -36,7 +38,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: web-tier
+    app: web-tier-app
   ports:
   - protocol: TCP
     port: 80 # listen on port 80
