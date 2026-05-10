@@ -9,6 +9,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: free-tier-deployment
+  namespace: free-service
   labels:
     app: free-app
 spec:

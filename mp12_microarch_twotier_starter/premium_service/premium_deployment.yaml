@@ -9,6 +9,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: premium-tier-deployment
+  namespace: premium-service
   labels:
     app: premium-app
 spec:
