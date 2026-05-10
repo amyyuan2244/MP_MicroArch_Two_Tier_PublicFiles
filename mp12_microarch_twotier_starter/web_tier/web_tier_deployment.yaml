@@ -5,7 +5,7 @@
 #
 # TODO: Fill in the Kubernetes Deployment and Service spec here.
 
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web-tier-deployment
