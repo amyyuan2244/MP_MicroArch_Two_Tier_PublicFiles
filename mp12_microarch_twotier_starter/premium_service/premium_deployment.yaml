@@ -12,7 +12,7 @@ metadata:
   labels:
     app: premium-app
 spec:
-  # replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: premium-app
@@ -23,6 +23,11 @@ spec:
     spec:
       containers:
       - name: premium-tier-app-docker
-        image: premium-tier-app-docker:v1
+        image: amyyuan2244/premium-tier-app-docker:v1
         ports:
-        - containerPort: 5000
+        - containerPort: 8080
+      containers:
+      - name: envoyproxy/envoy
+        image: envoyproxy/envoy:v1.25-latest
+        ports:
+        - containerPort: 8080

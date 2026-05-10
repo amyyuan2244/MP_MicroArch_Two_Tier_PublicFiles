@@ -11,8 +11,7 @@ spec:
   template:
    spec:
       containers:
-      - name: classifier
-        image: free-tier-app:v1  # TODO is this the docker image name here?
-        command: ["python3",  "flask_app.py"]
+      - name: classifier # names don't need to match
+        image: amyyuan2244/free-tier-app:v1  # TODO is this the docker image name here?
       restartPolicy: Never
   backoffLimit: 4
