@@ -37,4 +37,4 @@ spec:
       volumes:
       - name: envoy-config-volume
         configMap:
-          name: free-envoy-config
+          name: premium-envoy-config
