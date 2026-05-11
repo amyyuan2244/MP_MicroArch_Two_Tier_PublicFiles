@@ -14,7 +14,8 @@ metadata:
     app: web-tier-app
 spec:
   selector:
-    app: web-tier-app
+    matchLabels:
+      app: web-tier-app
   template:
     metadata:
       labels:
