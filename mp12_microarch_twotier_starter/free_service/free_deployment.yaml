@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: free-tier-app-docker 
-          image: amyyuan2244/free-tier-job-docker:latest # TODO: swap back?
+          image: amyyuan2244/free-tier-app-docker:latest # TODO: swap?
           ports:
             - containerPort: 5000
           resources:

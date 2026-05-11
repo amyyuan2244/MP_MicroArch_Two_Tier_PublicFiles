@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: premium-tier-job
-          image: amyyuan2244/premium-tier-app-docker:latest  # TODO swap back?
+          image: amyyuan2244/premium-tier-job-docker:latest  # TODO swap back?
           imagePullPolicy: Always
       restartPolicy: OnFailure
   backoffLimit: 4
