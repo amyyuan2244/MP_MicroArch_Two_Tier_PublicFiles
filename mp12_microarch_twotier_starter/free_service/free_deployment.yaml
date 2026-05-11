@@ -53,3 +53,28 @@ spec:
         - name: envoy-config-volume
           configMap:
             name: free-envoy-config
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: free-service
+  name: free-job-role
+rules:
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs:  ["create", "watch", "get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: bind-free-job-role
+  namespace: free-service
+subjects:
+- kind: ServiceAccount
+  name: free-subject
+  namespace: free-service
+roleRef:
+  kind: Role
+  name: free-job-role
+  apiGroup: rbac.authorization.k8s.io

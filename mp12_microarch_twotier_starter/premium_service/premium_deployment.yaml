@@ -38,3 +38,28 @@ spec:
       - name: envoy-config-volume
         configMap:
           name: premium-envoy-config
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: premium-service
+  name: premium-job-role
+rules:
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["create", "watch", "get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: bind-premium-job-role
+  namespace: premium-service
+subjects:
+- kind: ServiceAccount
+  name: premium-subject
+  namespace: premium-service
+roleRef:
+  kind: Role
+  name: premium-job-role
+  apiGroup: rbac.authorization.k8s.io
