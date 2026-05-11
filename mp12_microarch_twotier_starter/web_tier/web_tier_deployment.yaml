@@ -15,9 +15,6 @@ metadata:
 spec:
   selector:
     app: web-tier-app
-  # ports:
-  #   - port: 8080
-  #     # targetPort: 5000
   template:
     metadata:
       labels:
@@ -40,5 +37,5 @@ spec:
     app: web-tier-app
   ports:
   - protocol: TCP
-    port: 80 # listen on port 80
-    targetPort: 8080 # forward to port 8080
+    port: 80 # listen on port 80 # or 8080?
+    targetPort: 8080 # forward to port 8080 or 5000?

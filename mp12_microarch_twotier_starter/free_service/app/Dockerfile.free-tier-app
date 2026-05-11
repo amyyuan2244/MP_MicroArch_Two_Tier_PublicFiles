@@ -14,6 +14,7 @@ WORKDIR /app/
 
 # TODO: Copy the necessary application files into the image (from free_service/app/ directory)
 COPY mp12_microarch_twotier_starter/free_service/app/ /app/
+# this is just the flask_app.py right? so I just have that and never need to rebuild this?
 
 # TODO: Install Python dependencies
 RUN pip3 install --upgrade pip

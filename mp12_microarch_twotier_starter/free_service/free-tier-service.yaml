@@ -16,4 +16,4 @@ spec:
     app: free-app
   ports:
     - port: 8080
-      targetPort: 8080 # or 5000?
+      targetPort: 5000 # or 8080?
