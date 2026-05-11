@@ -11,8 +11,8 @@ metadata:
 spec:
   template:
     metadata:
-        labels:
-          dataset: mnist
+      labels:
+        dataset: mnist
     spec:
       containers:
       - name: free-tier-job # names don't need to match
