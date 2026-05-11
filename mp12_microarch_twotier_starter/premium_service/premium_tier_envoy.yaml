@@ -58,5 +58,6 @@ static_resources:
                   address:
                     socket_address:
                       # Kubernetes Service DNS TODO:  should this be 127.0.0.1 (localhost?)
-                      address: premium-tier-service.premium-service.svc.cluster.local
+                      # address: premium-tier-service.premium-service.svc.cluster.local
+                      address: 127.0.0.1
                       port_value: 5000
