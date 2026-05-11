@@ -57,7 +57,7 @@ metadata:
   namespace: premium-service
 subjects:
 - kind: ServiceAccount
-  name: premium-subject
+  name: default
   namespace: premium-service
 roleRef:
   kind: Role

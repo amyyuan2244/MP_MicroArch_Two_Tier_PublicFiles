@@ -72,7 +72,7 @@ metadata:
   namespace: free-service
 subjects:
 - kind: ServiceAccount
-  name: free-subject
+  name: default
   namespace: free-service
 roleRef:
   kind: Role
