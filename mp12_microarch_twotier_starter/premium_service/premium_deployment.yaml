@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: premium-tier-app-docker
-        image: amyyuan2244/premium-tier-app-docker:latest
+        image: amyyuan2244/premium-tier-job-docker:latest # TODO: swap back?
         ports:
         - containerPort: 5000
         imagePullPolicy: Always
