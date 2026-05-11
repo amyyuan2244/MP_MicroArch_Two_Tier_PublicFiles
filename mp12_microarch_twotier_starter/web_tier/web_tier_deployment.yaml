@@ -27,6 +27,7 @@ spec:
         image: amyyuan2244/web-tier-docker:latest
         ports:
         - containerPort: 8080
+        imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service

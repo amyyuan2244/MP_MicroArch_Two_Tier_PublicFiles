@@ -25,6 +25,7 @@ spec:
         image: amyyuan2244/premium-tier-app-docker:latest
         ports:
         - containerPort: 5000
+        imagePullPolicy: Always
       - name: envoy-container
         image: envoyproxy/envoy:v1.22.0
         ports:
@@ -32,6 +33,7 @@ spec:
         volumeMounts:
         - name: envoy-config-volume
           mountPath: /etc/envoy/
+        imagePullPolicy: Always
       volumes:
       - name: envoy-config-volume
         configMap:
