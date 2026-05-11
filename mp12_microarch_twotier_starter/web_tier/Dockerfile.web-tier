@@ -15,4 +15,5 @@ COPY /mp12_microarch_twotier_starter/web_tier/web_tier_envoy.yaml /etc/envoy/env
 EXPOSE 8080
 
 # TODO: Specify the default command to run Envoy
+RUN chmod go+r /etc/envoy/envoy.yaml
 CMD ["envoy", "-c", "/etc/envoy/envoy.yaml"]
