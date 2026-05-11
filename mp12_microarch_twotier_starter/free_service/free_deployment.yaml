@@ -32,7 +32,6 @@ spec:
           limits:
             cpu: "500m"
             memory: "256Mi"
-            cpu: "500m"
       - name: envoy-container
         image: envoyproxy/envoy:v1.25-latest
         ports:
