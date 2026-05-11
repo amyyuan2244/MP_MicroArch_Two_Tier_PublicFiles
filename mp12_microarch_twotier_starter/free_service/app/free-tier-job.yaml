@@ -15,7 +15,7 @@ spec:
         dataset: mnist
     spec:
       containers:
-        - name: free-tier-job # names don't need to match
+        - name: free-job-template # names don't need to match, previously free-tier-job
           image: amyyuan2244/free-tier-job-docker:latest  # TODO: swap?
           resources:
             requests:
