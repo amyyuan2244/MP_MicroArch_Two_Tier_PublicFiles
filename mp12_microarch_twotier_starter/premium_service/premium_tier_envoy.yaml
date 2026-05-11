@@ -48,7 +48,7 @@ static_resources:
   clusters:
     - name: premium_service_flask
       connect_timeout: 5s
-      type: STRICT_DNS
+      type: STATIC
       lb_policy: ROUND_ROBIN
       load_assignment:
         cluster_name: premium_service_flask
@@ -57,7 +57,7 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-                      # Kubernetes Service DNS TODO:  should this be 127.0.0.1 (localhost?)
+                      # Kubernetes Service DNS TODO:  should this be 127.0.0.1 (localhost?) yes b/c same pod
                       # address: premium-tier-service.premium-service.svc.cluster.local
                       address: 127.0.0.1
                       port_value: 5000

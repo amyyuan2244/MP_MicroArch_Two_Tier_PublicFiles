@@ -59,7 +59,7 @@ static_resources:
   clusters:
     - name: free_service
       connect_timeout: 5s
-      type: STRICT_DNS
+      type: LOGICAL_DNS
       lb_policy: ROUND_ROBIN
       load_assignment:
         cluster_name: free_service
@@ -75,7 +75,7 @@ static_resources:
 
     - name: premium_service
       connect_timeout: 5s
-      type: STRICT_DNS
+      type: LOGICAL_DNS
       lb_policy: ROUND_ROBIN
       load_assignment:
         cluster_name: premium_service
