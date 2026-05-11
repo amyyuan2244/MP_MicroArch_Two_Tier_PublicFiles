@@ -13,6 +13,6 @@ spec:
    spec:
       containers:
       - name: free-tier-job # names don't need to match
-        image: amyyuan2244/free-tier-app:latest  # TODO is this the docker image name here?
+        image: amyyuan2244/free-tier-app-docker:latest  # TODO is this the docker image name here?
       restartPolicy: Never
   backoffLimit: 4
