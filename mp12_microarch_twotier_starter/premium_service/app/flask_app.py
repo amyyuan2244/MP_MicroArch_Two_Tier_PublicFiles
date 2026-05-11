@@ -10,6 +10,9 @@ or business logic as required by the assignment.
 
 from kubernetes import client, config
 from flask import Flask, request
+import yaml
+import uuid
+from kubernetes.client.rest import ApiException
 
 # Load Kubernetes configuration 
 try:
@@ -31,18 +34,21 @@ app = Flask(__name__)
 @app.route('/premium', methods=['POST'])
 def post_premium():
     namespace = "premium-service"
-    uniqueName = "premium-service-job-" + str(time.time())
+    uniqueName = "premium-service-job-" + str(uuid.uuid4())
     batchV1 = client.BatchV1Api()
 
-    dataSet = request.get_json()['dataset']    # this is just a string for kmnist or mnist
+    data = request.get_json() # this is just a string for kmnist or mnist
+
+    if not data or 'dataset' not in data:
+        return "Missing 'dataset' in request body", 400
+
+    dataSet = data['dataset']
 
     with open('/app/premium-tier-job.yaml', 'r') as f:
         jobSpec = yaml.safe_load(f)
 
     jobSpec['metadata']['name'] = uniqueName
     jobSpec['spec']['template']['metadata']['labels']['dataset'] = dataSet # TODO
-    with open('/app/premium-tier-job.yaml', 'w') as file:
-        yaml.dump(jobSpec, file)
         
     try:
         response = batchV1.create_namespaced_job(

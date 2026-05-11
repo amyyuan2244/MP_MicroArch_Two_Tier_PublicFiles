@@ -10,6 +10,9 @@ metadata:
   namespace: premium-service
 spec:
   template:
+   metadata:
+      labels:
+        dataset: kmnist
    spec:
       containers:
       - name: premium-tier-job
