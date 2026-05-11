@@ -8,7 +8,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: premium-tier-deployment
+  name: premium-tier-service
   namespace: premium-service
 spec:
   replicas: 1

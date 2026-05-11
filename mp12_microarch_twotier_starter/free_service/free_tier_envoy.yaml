@@ -38,7 +38,7 @@ static_resources:
                               - name: ":method"
                                 exact_match: "POST"
                           route:
-                            cluster: free_service
+                            cluster: free_service_flask
                             # prefix_rewrite: "/"  # Strip /free before forwarding TODO?
                 http_filters:
                   - name: envoy.filters.http.router
@@ -46,12 +46,12 @@ static_resources:
                       "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
 
   clusters:
-    - name: free_service
+    - name: free_service_flask
       connect_timeout: 5s
       type: STRICT_DNS
       lb_policy: ROUND_ROBIN
       load_assignment:
-        cluster_name: free_service
+        cluster_name: free_service_flask
         endpoints:
           - lb_endpoints:
               - endpoint:
