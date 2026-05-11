@@ -5,8 +5,8 @@ url = "https://5t72crzbtelmzcnqp36yt5i2cm0tygzs.lambda-url.us-east-1.on.aws/"
 
 payload = {
     "submitterEmail": 'amyyuan2@illinois.edu',  # Your Coursera-registered email
-    "secret": 'o8nGYAppBtcmpVvK',       # Your Coursera assignment token (valid for 30 mins)
-    "lbaddress": 'http:// acb3dcd43754044a3bed32845226d65d-240342408.us-east-1.elb.amazonaws.com', # LB External IP 
+    "secret": 'U6rJ6cJUpGJL3mlv',       # Your Coursera assignment token (valid for 30 mins)
+    "lbaddress": 'http://acb3dcd43754044a3bed32845226d65d-240342408.us-east-1.elb.amazonaws.com', # LB External IP 
     "ipaddress": 'http://44.201.214.240:5000',            # EC2 public IPv4 and port (running grader_interface.py) 
 }
 

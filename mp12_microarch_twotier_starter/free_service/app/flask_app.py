@@ -34,7 +34,7 @@ app = Flask(__name__)
 @app.route('/free', methods=['POST'])       # TODO: how do I determine the path? is it just /free?
 def post_free():
     namespace = "free-service"
-    uniqueName = "free-service-job-" + str(uuid.uuid4())
+    uniqueName = "free-job-template-" + str(uuid.uuid4())
     batchV1 = client.BatchV1Api()
 
     data = request.get_json() # this is just a string for kmnist or mnist

@@ -34,7 +34,7 @@ app = Flask(__name__)
 @app.route('/premium', methods=['POST'])
 def post_premium():
     namespace = "premium-service"
-    uniqueName = "premium-service-job-" + str(uuid.uuid4())
+    uniqueName = "premium-job-template-" + str(uuid.uuid4())
     batchV1 = client.BatchV1Api()
 
     data = request.get_json() # this is just a string for kmnist or mnist
