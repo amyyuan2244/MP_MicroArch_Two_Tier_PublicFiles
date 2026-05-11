@@ -25,7 +25,6 @@ static_resources:
               typed_config:
                 "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
                 stat_prefix: ingress_http
-                codec_type: AUTO
                 route_config:
                   name: route
                   virtual_hosts:
@@ -35,18 +34,12 @@ static_resources:
                         # Route /free to free service
                         - match:
                             prefix: "/free"
-                            # headers:
-                            #   - name: ":method"
-                            #     exact_match: "POST"
                           route:
                             cluster: free_service
                             # prefix_rewrite: "/"  # Strip /free prefix TODO?
                         # Route /premium to premium service
                         - match:
                             prefix: "/premium"
-                            # headers:
-                            #   - name: ":method"
-                            #     exact_match: "POST"
                           route:
                             cluster: premium_service
                             # prefix_rewrite: "/"

@@ -32,18 +32,20 @@ app = Flask(__name__)
 def post_premium():
     namespace = "premium-service"
     uniqueName = "premium-service-job-" + str(time.time())
+    batchV1 = client.BatchV1Api()
+
     dataSet = request.get_json()['dataset']    # this is just a string for kmnist or mnist
 
     with open('/app/premium-tier-job.yaml', 'r') as f:
-        jobSpec = yaml.load(f, Loader=yaml.Loader)
+        jobSpec = yaml.safe_load(f)
 
     jobSpec['metadata']['name'] = uniqueName
     jobSpec['spec']['template']['metadata']['labels']['dataset'] = dataSet # TODO
     with open('/app/premium-tier-job.yaml', 'w') as file:
         yaml.dump(jobSpec, file)
-
+        
     try:
-        response = v1.create_namespaced_job(
+        response = batchV1.create_namespaced_job(
             body=jobSpec,
             namespace=namespace
         )

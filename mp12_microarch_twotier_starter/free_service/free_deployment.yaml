@@ -21,7 +21,7 @@ spec:
         app: free-app
     spec:
       containers:
-      - name: free-tier-app-docker
+      - name: free-tier-app-docker 
         image: amyyuan2244/free-tier-app-docker:latest
         ports:
         - containerPort: 5000
@@ -33,7 +33,7 @@ spec:
             cpu: "500m"
             memory: "256Mi"
       - name: envoy-container
-        image: envoyproxy/envoy:v1.25-latest
+        image: envoyproxy/envoy:v1.22.0
         ports:
         - containerPort: 8080
         resources:
@@ -43,3 +43,11 @@ spec:
           limits:
             cpu: "500m"
             memory: "256Mi"
+        volumeMounts:
+        - name: envoy-config-volume
+          mountPath: /etc/envoy/
+
+      volumes:
+      - name: envoy-config-volume
+        configMap:
+          name: free-envoy-config

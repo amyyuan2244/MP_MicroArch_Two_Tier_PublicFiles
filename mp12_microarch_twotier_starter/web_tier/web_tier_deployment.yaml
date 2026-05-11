@@ -13,6 +13,7 @@ metadata:
   labels:
     app: web-tier-app
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: web-tier-app
