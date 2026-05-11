@@ -6,7 +6,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: premium-tier-job
+  name: premium-job-template
   namespace: premium-service
 spec:
   template:
@@ -15,7 +15,7 @@ spec:
         dataset: kmnist
     spec:
       containers:
-        - name: premium-tier-job
+        - name: premium-job-template
           image: amyyuan2244/premium-tier-job-docker:latest  # TODO swap back?
           imagePullPolicy: Always
       restartPolicy: OnFailure
