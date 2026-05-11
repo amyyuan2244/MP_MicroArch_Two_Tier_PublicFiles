@@ -24,7 +24,7 @@ spec:
       - name: free-tier-app-docker
         image: amyyuan2244/free-tier-app-docker:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 5000
       containers:
       - name: envoy-container
         image: envoyproxy/envoy:v1.25-latest
