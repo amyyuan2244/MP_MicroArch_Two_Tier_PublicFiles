@@ -15,8 +15,8 @@ spec:
         dataset: kmnist
     spec:
       containers:
-      - name: premium-tier-job
-        image: amyyuan2244/premium-tier-app-docker:latest  # TODO is this the docker image name here?
-        imagePullPolicy: Always
+        - name: premium-tier-job
+          image: amyyuan2244/premium-tier-app-docker:latest  # TODO is this the docker image name here?
+          imagePullPolicy: Always
       restartPolicy: OnFailure
   backoffLimit: 4

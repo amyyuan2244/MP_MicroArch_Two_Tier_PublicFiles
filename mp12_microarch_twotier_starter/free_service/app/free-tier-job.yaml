@@ -15,15 +15,15 @@ spec:
         dataset: mnist
     spec:
       containers:
-      - name: free-tier-job # names don't need to match
-        image: amyyuan2244/free-tier-app-docker:latest  # TODO is this the docker image name here?
-        resources:
-          requests:
-            cpu: "250m"
-            memory: "128Mi"
-          limits:
-            cpu: "500m"
-            memory: "256Mi"
-        imagePullPolicy: Always
+        - name: free-tier-job # names don't need to match
+          image: amyyuan2244/free-tier-app-docker:latest  # TODO is this the docker image name here?
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+          imagePullPolicy: Always
       restartPolicy: OnFailure
   backoffLimit: 4

@@ -34,9 +34,6 @@ static_resources:
                       routes:
                         - match:
                             prefix: "/premium"
-                            headers:
-                              - name: ":method"
-                                exact_match: "POST"
                           route:
                             cluster: premium_service_flask
                             # prefix_rewrite: "/"  # Strip /premium before forwarding TODO?
