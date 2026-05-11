@@ -13,8 +13,7 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: premium-app
+    app: premium-app
   template:
     metadata:
       labels:
