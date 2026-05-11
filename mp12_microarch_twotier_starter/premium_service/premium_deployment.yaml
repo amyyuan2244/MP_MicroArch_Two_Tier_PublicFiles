@@ -32,8 +32,7 @@ spec:
         - containerPort: 8080
         volumeMounts:
         - name: envoy-config-volume
-          mountPath: /etc/envoy/
-          subPath: envoy.yaml
+          mountPath: /etc/envoy/git 
         imagePullPolicy: Always
       volumes:
       - name: envoy-config-volume
