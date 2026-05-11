@@ -51,10 +51,10 @@ static_resources:
         cluster_name: premium_service_flask
         endpoints:
           - lb_endpoints:
-              - endpoint:
-                  address:
-                    socket_address:
-                      # Kubernetes Service DNS TODO:  should this be 127.0.0.1 (localhost?) yes b/c same pod
-                      # address: premium-tier-service.premium-service.svc.cluster.local
-                      address: 127.0.0.1
-                      port_value: 5000
+            - endpoint:
+                address:
+                  socket_address:
+                    # Kubernetes Service DNS TODO:  should this be 127.0.0.1 (localhost?) yes b/c same pod
+                    # address: premium-tier-service.premium-service.svc.cluster.local
+                    address: 127.0.0.1
+                    port_value: 5000
