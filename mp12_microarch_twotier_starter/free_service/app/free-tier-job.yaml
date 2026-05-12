@@ -6,7 +6,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: free-job-template
+  name: free-job-template # to match the grader_interface.py
   namespace: free-service
 spec:
   template:
@@ -15,8 +15,8 @@ spec:
         dataset: mnist
     spec:
       containers:
-        - name: free-job-template # names don't need to match, previously free-tier-job
-          image: amyyuan2244/free-tier-job-docker:latest  # TODO: swap?
+        - name: free-job-template
+          image: amyyuan2244/free-tier-job-docker:latest
           resources:
             requests:
               cpu: "250m"
